@@ -8,7 +8,8 @@
     "__split_buffer": "cpp",
     "bitset": "cpp",
     "string_view": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "new": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\gcc.exe",
   "C_Cpp_Runner.cppCompilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\g++.exe",
