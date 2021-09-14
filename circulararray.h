@@ -246,6 +246,6 @@ void CircularArray<T>::quicksort(int mini, int maxi){
 
 template<class T>
 void CircularArray<T>::sort() {
-    quicksort(0, capacity-1);
+    quicksort(0, size()-1);
 }
 
