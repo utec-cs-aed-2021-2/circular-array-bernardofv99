@@ -72,8 +72,8 @@ public:
 
     void reverse(){
         int inicio= front,final = back;
-        for(int q=0;q<size()/2;q++){
-            swap(array[inicio],array[final]);
+        for(int i=0; i < size()/2; i++){
+            swap(array[inicio], array[final]);
             inicio = next(inicio);
             final = prev(final);
         }
@@ -86,6 +86,12 @@ private:
     int prev(int);
     void quicksort(int mini, int maxi);
 };
+
+template<class T>
+void CircularArray<T>::clear() {
+    front = -1;
+    back = -1;
+}
 
 template <class T>
 CircularArray<T>::CircularArray()
@@ -135,14 +141,15 @@ T &CircularArray<T>::operator[](int pos) {
 
 template<class T>
 T CircularArray<T>::pop_back() {
+    T data = array[back];
     if(is_empty()){
             cout << "No hay nada para eliminar";
     }
-    else if (front == back) {
-        front = -1; back = -1;             
+    else if(is_full()){
+        front = -1;
+        back = -1;
     }
     else {
-        array[back] = -1;
         if (back == 0){
             back = 6;
         }
@@ -150,25 +157,26 @@ T CircularArray<T>::pop_back() {
             back = prev(back);
         }
     }
+    return data;
 }
 
 template<class T>
 T CircularArray<T>::pop_front() {
+    T data = array[front];
     if(is_empty()){
         cout << "No hay nada para eliminar";
     }
-    else if (front == back) {
-        front = -1; back = -1;             
+    else if(is_full()){
+        front = -1;
+        back = -1;
     }
     else {
-        array[front] = -1;
         if (front == 6){
             front = 0;
         }
-        else{
-            front = next(front);
-        }
+        front = next(front);
     }
+    return data;
 }
 
 
@@ -181,36 +189,36 @@ void CircularArray<T>::push_front(T data) {
     }
     else if (is_full()) {
         cout << "Array lleno";
+        array[front] = array[front];
     }
     else{
         if (front == 7) {
             front = 0;
         }
-        else{
-            front = prev(front);  
-        }                  
-        array[front] = data;
-    } 
-}
+        front = prev(front);  
+    }                  
+    array[front] = data;
+} 
 
 template<class T>
 void CircularArray<T>::push_back(T data) {
     if(is_empty()){
         front = 0;
         back = 0;
+        array[back] = data;
     }
     else if (is_full()) {
         cout << "Array lleno";
+        array[back] = array[back];
     }
     else{
         if (back == capacity - 1){
             back = 0;
         }
         else
-            back = next(back);
-        array[back] = data;          
-    }
-    array[back] = data;  
+            back = next(back);    
+        array[back] = data;     
+    }  
 }
 
 template<class T>
